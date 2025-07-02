@@ -91,5 +91,3 @@ modalSubmit.addEventListener("click", (e) => {
   form.reset();
   addBookModal.close();
 });
-
-addBookModal.showModal();
