@@ -13,8 +13,8 @@ function Book(name, author, pages) {
   this.read = false;
 }
 
-Book.prototype.changeReadStatus = function (book) {
-  book.read = book.read ? "Click to mark read" : "Read";
+Book.prototype.changeReadStatus = function () {
+  this.read = !this.read;
 };
 
 function addBookToLibrary(...books) {
@@ -59,7 +59,22 @@ modalSubmit.addEventListener("click", (e) => {
   readStatusBtn.classList.add("read-btn");
   readStatusBtn.innerText = newBook.read ? "Read" : "Click to mark read";
   readStatusBtn.dataset.id = newBook.id; // store book ID
-  readStatusBtn.addEventListener("click", newBook.changeReadStatus);
+  removeBtn.dataset.id = newBook.id;
+  readStatusBtn.addEventListener("click", function () {
+    const book = myLibrary.find((b) => b.id == this.dataset.id);
+    if (book) {
+      book.changeReadStatus();
+      this.innerText = newBook.read ? "Read" : "Click to mark read";
+    }
+  });
+
+  removeBtn.addEventListener("click", function () {
+    const bookIndex = myLibrary.findIndex((book) => book.id == this.dataset.id);
+    if (bookIndex !== -1) {
+      myLibrary.splice(bookIndex, 1);
+      this.parentElement.remove();
+    }
+  });
 
   para1.textContent = `Title: ${title}`;
   para2.textContent = `Author: ${author}`;
