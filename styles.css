@@ -47,13 +47,47 @@ h2 {
 main {
   grid-area: 2 / 2 / 3 / -1;
   background-color: var(--main-content);
+  padding: 1rem;
 }
 
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(autofill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
 }
 
+.book {
+  display: grid;
+  background-color: #6b7280;
+  color: var(--main-content);
+  place-content: center;
+  width: 150px;
+  height: 150px;
+  border: 2px var(--primary-text) solid;
+  padding: 5px;
+}
+
+.book .remove-btn {
+  border-radius: 3px;
+  background-color: var(--btn-primary);
+  outline: none;
+  border: 1px lightgray;
+  color: white;
+}
+
+.book .read-btn {
+  border-radius: 3px;
+  background-color: var(--btn-primary);
+  outline: none;
+  border: 1px lightgray;
+  color: white;
+  margin-bottom: 5px;
+  padding: 3px;
+}
+
+.book > p {
+  height: auto;
+}
 main h2 {
   text-align: center;
   font-size: clamp(30px, 1.5rem, 2%);
@@ -83,4 +117,44 @@ footer {
   border: 1px lightgray;
   width: 150px;
   margin-top: 0.5rem;
+  color: white;
+}
+
+#add-book {
+  padding: 1rem;
+  align-items: center;
+  border: solid 1px grey;
+  background-color: var(--sidebar);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#add-book::backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+#add-book h2 {
+  font-size: 20px;
+}
+
+#add-book div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-book button {
+  display: block;
+  margin-left: auto;
+  border-radius: 3px;
+  background-color: var(--btn-primary);
+  outline: none;
+  border: 1px lightgray;
+  width: 185px;
+  margin-top: 0.5rem;
+  color: white;
 }
